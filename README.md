@@ -16,7 +16,7 @@ Professor (entidade forte):
 Atributos: professor_id (pk), numero_registro, departamento;
 
 Disciplina (entidade forte):
-Atributos: disciplina_id (pk), Nome, código, pre_requisito, carga_horaria, periodo, presença 
+Atributos: disciplina_id (pk), Nome, código, pre_requisito, carga_horaria, periodo, presença (atributo multivalorado);
 
 Grade horária (entidade fraca):
 atributos: horários;
@@ -31,10 +31,10 @@ Atv_avaliativa (entidade fraca):
 atributos: peso, ponto_valor (atributo derivado do atributo peso);
 
 ### Relacionamentos: 
-Professor > *atribui* > Atividade
-Professor > *leciona* > Disciplina
-Aluno > *cria* (relacionamento fraco) > Grade Horária
-Aluno > *executa* > Atividade
-Aluno > *matricula_em* > Disciplina
-Grade horária > *inclui* > Disciplina
-Disciplina > *divulga* > Atividade
+Professor > *atribui* > Atividade;
+Professor > *leciona* > Disciplina;
+Aluno > *cria* (relacionamento fraco) > Grade Horária;
+Aluno > *executa* > Atividade;
+Aluno > *matricula_em* > Disciplina;
+Grade horária > *inclui* > Disciplina;
+Disciplina > *divulga* > Atividade.
