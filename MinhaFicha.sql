@@ -1,6 +1,5 @@
-DROP SCHEMA academico CASCADE;
+DROP SCHEMA IF EXISTS academico CASCADE;
 CREATE SCHEMA academico;
-
 
 CREATE TABLE academico.pessoas (
     pessoa_id INTEGER NOT NULL,
@@ -43,11 +42,16 @@ CREATE TABLE academico.disciplinas (
     codigo VARCHAR(20) NOT NULL,
     carga_horaria INTEGER,
     periodo VARCHAR(20),
-    presenca VARCHAR(255),
     professor_id INTEGER,
     pre_requisito_id INTEGER,
     CONSTRAINT pk_disciplinas PRIMARY KEY (disciplina_id),
     CONSTRAINT un_disciplinas_codigo UNIQUE (codigo)
+);
+
+CREATE TABLE academico.registros_presenca (
+    disciplina_id INTEGER NOT NULL,
+    data_presenca DATE NOT NULL,
+    CONSTRAINT pk_registros_presenca PRIMARY KEY (disciplina_id, data_presenca)
 );
 
 CREATE TABLE academico.atividades (
@@ -92,6 +96,9 @@ CREATE TABLE academico.grades_disciplinas (
     disciplina_id INTEGER NOT NULL,
     CONSTRAINT pk_grades_disciplinas PRIMARY KEY (grade_id, disciplina_id)
 );
+
+ALTER TABLE academico.registros_presenca ADD CONSTRAINT fk_presenca_disciplina
+FOREIGN KEY (disciplina_id) REFERENCES academico.disciplinas(disciplina_id);
 
 ALTER TABLE academico.disciplinas ADD CONSTRAINT fk_disciplinas_professores
 FOREIGN KEY (professor_id) REFERENCES academico.professores(professor_id);
