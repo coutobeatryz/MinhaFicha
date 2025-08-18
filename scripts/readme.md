@@ -1,3 +1,5 @@
+## 📝 Sobre o Projeto
+
 ## 🚀 Guia de Execução da Aplicação
 
 Siga os passos abaixo para configurar e executar o projeto em seu ambiente local.
@@ -16,20 +18,6 @@ git clone [https://github.com/coutobeatryz/MinhaFicha.git](https://github.com/co
 
 # Acesse a pasta do projeto
 cd MinhaFicha
-Bash
-
-# Crie um ambiente virtual para isolar as dependências
-python -m venv venv
-Bash
-
-# Ative o ambiente virtual
-
-# No Windows:
-venv\Scripts\activate
-
-# Instale as bibliotecas Python necessárias
-pip install flask
-pip install psycopg2
 
 ### 🗄️ 3. Configuração do Banco de Dados
 
@@ -65,7 +53,3 @@ Com tudo configurado, inicie o servidor Flask.
 ```bash
 # No terminal, com o ambiente virtual (venv) ativo, execute:
 python app.py
-
-O terminal deverá exibir uma mensagem indicando que o servidor está rodando.
-
-Abra seu navegador e acesse a URL: http://localhost:5000
