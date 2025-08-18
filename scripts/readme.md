@@ -18,7 +18,7 @@ Acesse a pasta do projeto
 ```bash
 cd MinhaFicha
 ```
-Instale as dependencias
+Instale as dependências
 ```bash
 pip install flask
 ```
