@@ -10,12 +10,12 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados:
 * **PostgreSQL** (o serviço do banco de dados deve estar instalado e rodando)
 
 ### ⚙️ 2. Configuração do Ambiente
+Clone o repositório do GitHub
 ```bash
-# Clone o repositório do GitHub
 git clone [https://github.com/coutobeatryz/MinhaFicha.git](https://github.com/coutobeatryz/MinhaFicha.git)
 ```
+Acesse a pasta do projeto
 ```bash
-# Acesse a pasta do projeto
 cd MinhaFicha
 ```
 ### 🗄️ 3. Configuração do Banco de Dados
