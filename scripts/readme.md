@@ -18,6 +18,13 @@ Acesse a pasta do projeto
 ```bash
 cd MinhaFicha
 ```
+Instale as dependencias
+```bash
+pip install flask
+```
+```bash
+pip install psycopg2
+```
 ### 🗄️ 3. Configuração do Banco de Dados
 
 Esta é a etapa mais importante. Você precisa criar o banco de dados e as tabelas do projeto.
