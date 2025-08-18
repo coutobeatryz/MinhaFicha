@@ -1,5 +1,3 @@
-## 📝 Sobre o Projeto
-
 ## 🚀 Guia de Execução da Aplicação
 
 Siga os passos abaixo para configurar e executar o projeto em seu ambiente local.
