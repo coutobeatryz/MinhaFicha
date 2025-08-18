@@ -14,7 +14,8 @@ O objetivo do **MinhaFicha** é desenvolver um banco de dados relacional robusto
 
 O modelo conceitual abaixo representa a estrutura do banco de dados, mostrando as entidades e como elas se relacionam.
 
-<img width="937" height="483" alt="Modelo E-R do projeto MinhaFicha" src="https://github.com/user-attachments/assets/75f7b79a-777e-4b32-96e9-1d1c35c48cad" />
+<img width="923" height="473" alt="image" src="https://github.com/user-attachments/assets/bc979364-206e-4859-a6d0-2fa7b73fb643" />
+
 
 ## 🏗️ Estrutura do Banco de Dados
 
@@ -57,11 +58,11 @@ A seguir estão detalhadas as entidades do modelo e seus respectivos atributos.
     * `status`
     * `data`
 
-* **Tarefa** (Entidade Fraca, especialização de Atividade)
+* **Tarefa** (Entidade Forte, especialização de Atividade)
     * `recorrencia`
     * `categoria`
 
-* **Atividade Avaliativa** (Entidade Fraca, especialização de Atividade)
+* **Atividade Avaliativa** (Entidade Forte, especialização de Atividade)
     * `peso`
     * `ponto_valor` (Atributo derivado do atributo `peso`)
 
@@ -69,9 +70,8 @@ A seguir estão detalhadas as entidades do modelo e seus respectivos atributos.
 
 * **Professor** _leciona_ **Disciplina**
 * **Professor** _atribui_ **Atividade**
-* **Aluno** _matricula-se em_ **Disciplina**
 * **Aluno** _executa_ **Atividade**
-* **Aluno** _cria_ **Grade Horária** (Relacionamento de identificação)
+* **Aluno** _cria_ **Grade Horária** (Relacionamento fraco)
 * **Disciplina** _é incluída em_ **Grade Horária**
 * **Disciplina** _divulga_ **Atividade**
 
