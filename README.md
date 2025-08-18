@@ -63,4 +63,16 @@ A seguir estão detalhadas as entidades do modelo e seus respectivos atributos.
 
 * **Atividade Avaliativa** (Entidade Fraca, especialização de Atividade)
     * `peso`
-    *
+    * `ponto_valor` (Atributo derivado do atributo `peso`)
+
+### Relacionamentos
+
+* **Professor** _leciona_ **Disciplina**
+* **Professor** _atribui_ **Atividade**
+* **Aluno** _matricula-se em_ **Disciplina**
+* **Aluno** _executa_ **Atividade**
+* **Aluno** _cria_ **Grade Horária** (Relacionamento de identificação)
+* **Disciplina** _é incluída em_ **Grade Horária**
+* **Disciplina** _divulga_ **Atividade**
+
+---
