@@ -16,10 +16,10 @@ Antes de começar, garanta que você tenha os seguintes softwares instalados:
 # Clone o repositório do GitHub
 git clone [https://github.com/coutobeatryz/MinhaFicha.git](https://github.com/coutobeatryz/MinhaFicha.git)
 ```
-
+```bash
 # Acesse a pasta do projeto
 cd MinhaFicha
-
+```
 ### 🗄️ 3. Configuração do Banco de Dados
 
 Esta é a etapa mais importante. Você precisa criar o banco de dados e as tabelas do projeto.
