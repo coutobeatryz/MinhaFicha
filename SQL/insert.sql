@@ -1,7 +1,7 @@
 INSERT INTO academico.pessoas (pessoa_id, nome, email, cpf) VALUES
-(1, 'Beatryz Carneiro', 'beatryz.c@email.com', '111.111.111-11'),
-(2, 'Iaggo Lima', 'iaggo.l@email.com', '222.222.222-22'),
-(3, 'Gabriel Amaro', 'gabriel.a@email.com', '333.333.333-33'),
+(1, 'Beatryz Carneiro', 'beatryz.car@aluno.edu.ufop.com', '111.111.111-11'),
+(2, 'Iaggo Lima', 'iaggo.rauta@aluno.ufop.edu.com', '222.222.222-22'),
+(3, 'Gabriel Amaro', 'gabriel.amaro@aluno.ufop.edu.com', '333.333.333-33'),
 (4, 'Marcos Emiliano', 'marcos.emiliano@ufop.edu.br', '444.444.444-44');
 
 INSERT INTO academico.alunos (aluno_id, matricula, curso) VALUES
@@ -20,7 +20,7 @@ INSERT INTO academico.atividades (atividade_id, titulo, descricao, status, data,
 (501, 'Trabalho Prático 1', 'Modelagem e Script SQL', 'Pendente', '2025-09-30', 101, 4);
 
 INSERT INTO academico.atividades (atividade_id, titulo, descricao, status, data, disciplina_id, professor_id) VALUES
-(502, 'Revisar SQL', 'Estudar capítulos do livro de C', 'Pendente', '2025-08-25', 102, NULL);
+(502, 'Revisar SQL', 'Estudar capítulos do livro de Banco de Dados', 'Pendente', '2025-08-25', 102, NULL);
 
 
 INSERT INTO academico.atividades_avaliativas (atividade_id, peso) VALUES
@@ -31,9 +31,9 @@ INSERT INTO academico.tarefas (atividade_id, recorrencia, categoria) VALUES
 
 
 INSERT INTO academico.alunos_disciplinas (aluno_id, disciplina_id) VALUES
-(1, 101), -- Beatryz em Banco de Dados
-(2, 101), -- Iaggo em Banco de Dados
-(3, 101), -- Gabriel em Banco de Dados
+(1, 101),
+(2, 101),
+(3, 101);
 
 INSERT INTO academico.alunos_atividades (aluno_id, atividade_id) VALUES
 (1, 501),
@@ -42,4 +42,3 @@ INSERT INTO academico.alunos_atividades (aluno_id, atividade_id) VALUES
 
 INSERT INTO academico.alunos_atividades (aluno_id, atividade_id) VALUES
 (2, 502);
-
