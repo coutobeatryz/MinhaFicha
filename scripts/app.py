@@ -1,11 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 import psycopg2
 from connection import get_connection
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta_aqui' 
-
-# --- Rotas para renderizar as páginas HTML ---
 
 @app.route("/")
 def index():
@@ -21,22 +19,92 @@ def cadastro_professor():
 
 @app.route("/menu_aluno")
 def menu_aluno():
-    return render_template("menu_aluno.html")
+    if 'matricula' not in session:
+        flash("Por favor, faça login para acessar esta página.", "error")
+        return redirect(url_for('index'))
+
+    aluno = None
+    conn = get_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            """
+            SELECT p.nome, a.curso, a.matricula
+            FROM academico.alunos a
+            JOIN academico.pessoas p ON a.aluno_id = p.pessoa_id
+            WHERE a.matricula = %s
+            """,
+            (session['matricula'],)
+        )
+        aluno_data = cur.fetchone()
+        if aluno_data:
+            aluno = {
+                "nome": aluno_data[0],
+                "curso": aluno_data[1],
+                "matricula": aluno_data[2]
+            }
+    except psycopg2.Error as e:
+        flash(f"Erro ao buscar dados do aluno: {e}", "error")
+    finally:
+        cur.close()
+        conn.close()
+
+    if not aluno:
+        session.pop('matricula', None)
+        flash("Não foi possível encontrar os dados do aluno. Faça login novamente.", "error")
+        return redirect(url_for('index'))
+
+    return render_template("menu_aluno.html", aluno=aluno)
+
 
 @app.route("/menu_professor")
 def menu_professor():
-    return render_template("menu_professor.html")
+    if 'registro' not in session:
+        flash("Por favor, faça login para acessar esta página.", "error")
+        return redirect(url_for('index'))
+
+    professor = None
+    conn = get_connection()
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            """
+            SELECT p.nome, pr.departamento, pr.numero_registro
+            FROM academico.professores pr
+            JOIN academico.pessoas p ON pr.professor_id = p.pessoa_id
+            WHERE pr.numero_registro = %s
+            """,
+            (session['registro'],)
+        )
+        professor_data = cur.fetchone()
+        if professor_data:
+            professor = {
+                "nome": professor_data[0],
+                "departamento": professor_data[1],
+                "registro": professor_data[2]
+            }
+    except psycopg2.Error as e:
+        flash(f"Erro ao buscar dados do professor: {e}", "error")
+    finally:
+        cur.close()
+        conn.close()
+
+    if not professor:
+        session.pop('registro', None)
+        flash("Não foi possível encontrar os dados do professor. Faça login novamente.", "error")
+        return redirect(url_for('index'))
+        
+    return render_template("menu_professor.html", professor=professor)
 
 @app.route("/cadastro_atividade")
 def cadastro_atividade():
     return render_template("cadastro_atividade.html")
 
-# ROTA CORRIGIDA (nome da função estava errado)
 @app.route("/cadastro_disciplina_professor")
 def cadastro_disciplina_professor():
     return render_template("cadastro_disciplina_professor.html")
 
-# --- Novas rotas adicionadas para as páginas existentes ---
+# --- Novas rotas ---
 
 @app.route("/aluno_atividades")
 def aluno_atividades():
@@ -52,8 +120,6 @@ def cadastro_disciplina():
 
 @app.route("/detalhe_disciplina")
 def detalhe_disciplina():
-    # Nota: Idealmente, esta rota seria dinâmica para mostrar detalhes de uma disciplina específica.
-    # Exemplo: /disciplina/<id>
     return render_template("detalhe_disciplina.html")
 
 @app.route("/disciplinas_aluno")
@@ -86,17 +152,14 @@ def registrar_aluno():
             (nome, cpf, email)
         )
         pessoa_id = cur.fetchone()[0]
-
         cur.execute(
             "INSERT INTO academico.alunos (aluno_id, matricula, curso) VALUES (%s, %s, %s)",
             (pessoa_id, matricula, curso)
         )
-        
         conn.commit()
         flash("Aluno cadastrado com sucesso! Faça o login.", "success")
     except psycopg2.Error as e:
         conn.rollback()
-
         if e.pgcode == '23505':
             flash("Erro: CPF, Email ou Matrícula já cadastrados no sistema.", "error")
         else:
@@ -123,12 +186,10 @@ def registrar_professor():
             (nome, cpf, email)
         )
         pessoa_id = cur.fetchone()[0]
-
         cur.execute(
             "INSERT INTO academico.professores (professor_id, numero_registro, departamento) VALUES (%s, %s, %s)",
             (pessoa_id, registro, departamento)
         )
-        
         conn.commit()
         flash("Professor cadastrado com sucesso! Faça o login.", "success")
     except psycopg2.Error as e:
@@ -146,7 +207,6 @@ def registrar_professor():
 @app.route("/login", methods=["POST"])
 def login():
     role = request.form['role']
-    
     conn = get_connection()
     cur = conn.cursor()
     
@@ -157,6 +217,7 @@ def login():
         cur.close()
         conn.close()
         if aluno:
+            session['matricula'] = matricula
             return redirect(url_for('menu_aluno'))
         else:
             flash("Matrícula de aluno não encontrada.", "error")
@@ -169,6 +230,7 @@ def login():
         cur.close()
         conn.close()
         if professor:
+            session['registro'] = registro
             return redirect(url_for('menu_professor'))
         else:
             flash("Número de registro de professor não encontrado.", "error")
