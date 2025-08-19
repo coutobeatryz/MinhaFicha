@@ -9,17 +9,115 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --cor-fundo: #FFF6F9; --cor-card: #FFFFFF; --cor-texto-principal: #1F2937; --cor-texto-secundario: #6B7280;
-            --cor-rosa-vibrante: #FF007A; --cor-rosa-claro: #FFEBF4; --cor-borda: #F3F4F6;
-            --cor-gradiente-inicio: #FF007A; --cor-gradiente-fim: #FF80B8;
+            --cor-fundo: #FFF6F9;
+            --cor-card: #FFFFFF;
+            --cor-texto-principal: #1F2937;
+            --cor-texto-secundario: #6B7280;
+            --cor-rosa-vibrante: #FF007A;
+            --cor-rosa-claro: #FFEBF4;
+            --cor-borda: #F3F4F6;
+            --cor-gradiente-inicio: #FF007A;
+            --cor-gradiente-fim: #FF80B8;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background-color: var(--cor-fundo); display: flex; align-items: center; justify-content: center; min-height: 100vh; color: var(--cor-texto-principal); }
-        .login-container { display: flex; width: 100%; max-width: 960px; background-color: var(--cor-card); border-radius: 24px; box-shadow: 0 20px 60px -15px rgba(255, 0, 122, 0.15); overflow: hidden; }
-        .branding-panel { flex: 1; padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at top left, var(--cor-rosa-claro), var(--cor-fundo) 70%); }
+        .login-container { display: flex; width: 100%; max-width: 960px; border-radius: 24px; box-shadow: 0 20px 60px -15px rgba(255, 0, 122, 0.15); overflow: hidden; }
+
+        .branding-panel {
+            flex: 1;
+            padding: 64px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: var(--cor-fundo);
+            position: relative;
+            overflow: hidden;
+        }
+
         .branding-panel .line { width: 60px; height: 4px; background-color: var(--cor-rosa-vibrante); border-radius: 2px; margin: 24px 0; }
-        .branding-panel p { font-size: 16px; color: var(--cor-texto-secundario); line-height: 1.6; max-width: 300px; }
-        .form-panel { flex: 1; padding: 64px; display: flex; flex-direction: column; justify-content: center; }
+        .branding-panel p { font-size: 16px; color: var(--cor-texto-secundario); line-height: 1.6; max-width: 320px; margin-bottom: 32px; }
+
+
+        .glitch-container { position: relative; }
+        .glitch-text { position: relative; animation: glitch-effect 2.5s steps(2, end) infinite; }
+        .glitch-text h1 {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--cor-rosa-vibrante);
+            line-height: 1.1;
+            text-shadow: 2px 2px 0px var(--cor-rosa-claro), 4px 4px 0px rgba(255, 0, 122, 0.1);
+            margin: 0;
+        }
+        .glitch-text .highlight {
+            color: var(--cor-gradiente-fim);
+            text-shadow: 2px 2px 0px var(--cor-rosa-claro), 4px 4px 0px rgba(255, 0, 122, 0.1);
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cor-fundo);
+            overflow: hidden;
+        }
+        .glitch-text::before {
+            left: 3px;
+            text-shadow: -2px 0 var(--cor-rosa-vibrante);
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            animation: glitch-anim-1 2.5s steps(2, end) infinite;
+        }
+        .glitch-text::after {
+            left: -3px;
+            text-shadow: -2px 0 var(--cor-rosa-claro), 2px 2px var(--cor-rosa-vibrante);
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+            animation: glitch-anim-2 2.5s steps(2, end) infinite;
+        }
+        @keyframes glitch-effect {
+            0%, 100% { transform: translate(0, 0); } 10% { transform: translate(-4px, -4px); } 20% { transform: translate(4px, 4px); } 30% { transform: translate(-4px, 4px); } 40% { transform: translate(4px, -4px); } 50% { transform: translate(-4px, -4px); } 60% { transform: translate(4px, 4px); } 70% { transform: translate(-4px, 4px); } 80% { transform: translate(4px, -4px); } 90% { transform: translate(-4px, -4px); }
+        }
+        @keyframes glitch-anim-1 {
+            0%, 100% { clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%); } 15% { clip-path: polygon(0 20%, 100% 20%, 100% 22%, 0 22%); } 30% { clip-path: polygon(0 50%, 100% 50%, 100% 51%, 0 51%); } 45% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); } 60% { clip-path: polygon(0 10%, 100% 10%, 100% 15%, 0 15%); } 75% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); }
+        }
+        @keyframes glitch-anim-2 {
+            0%, 100% { clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); } 15% { clip-path: polygon(0 80%, 100% 80%, 100% 85%, 0 85%); } 30% { clip-path: polygon(0 40%, 100% 40%, 100% 42%, 0 42%); } 45% { clip-path: polygon(0 10%, 100% 10%, 100% 12%, 0 12%); } 60% { clip-path: polygon(0 90%, 100% 90%, 100% 95%, 0 95%); } 75% { clip-path: polygon(0 30%, 100% 30%, 100% 35%, 0 35%); }
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 24px;
+            width: 100%;
+            max-width: 380px;
+            text-align: left;
+        }
+        .feature-list li {
+            font-size: 13px;
+            color: var(--cor-texto-secundario);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .feature-list li:hover {
+            transform: translateX(5px);
+            color: var(--cor-texto-principal);
+        }
+        .feature-list li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            background-color: var(--cor-rosa-vibrante);
+            border-radius: 50%;
+        }
+
+        .form-panel { flex: 1; padding: 64px; display: flex; flex-direction: column; justify-content: center; background-color: var(--cor-card); }
         .form-header { text-align: center; margin-bottom: 32px; }
         .icon-wrapper { width: 64px; height: 64px; margin: 0 auto 16px auto; border-radius: 16px; background: linear-gradient(135deg, var(--cor-gradiente-inicio), var(--cor-gradiente-fim)); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px -5px rgba(255, 0, 122, 0.4); }
         .form-header h2 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
@@ -36,33 +134,29 @@
         .register-link { text-align: center; margin-top: 24px; font-size: 14px; color: var(--cor-texto-secundario); }
         .register-link a { color: var(--cor-rosa-vibrante); font-weight: 600; text-decoration: none; }
         .register-link a:hover { text-decoration: underline; }
-
-        /* Estilos para o efeito Glitch */
-        .glitch-container { position: relative; }
-        .glitch-text { position: relative; animation: glitch-effect 4s steps(2, end) infinite; }
-        .glitch-text h1 { font-size: 48px; font-weight: 800; color: var(--cor-rosa-vibrante); line-height: 1.1; text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(255, 0, 122, 0.2); margin: 0; }
-        .glitch-text .highlight { color: #FF7AB8; text-shadow: 2px 2px 0px #fff, 4px 4px 0px rgba(255, 0, 122, 0.15); }
-        .glitch-text::before,
-        .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; overflow: hidden; }
-        .glitch-text::before { left: 2px; text-shadow: -2px 0 #F72585; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); animation: glitch-anim-1 4s steps(2, end) infinite; }
-        .glitch-text::after { left: -2px; text-shadow: -2px 0 #FFB6C1, 2px 2px #F72585; clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); animation: glitch-anim-2 4s steps(2, end) infinite; }
-        @keyframes glitch-effect { 0%, 100% { transform: translate(0, 0); } 10% { transform: translate(-5px, -5px); } 20% { transform: translate(5px, 5px); } 30% { transform: translate(-5px, 5px); } 40% { transform: translate(5px, -5px); } 50% { transform: translate(-5px, -5px); } 60% { transform: translate(5px, 5px); } 70% { transform: translate(-5px, 5px); } 80% { transform: translate(5px, -5px); } 90% { transform: translate(-5px, -5px); } }
-        @keyframes glitch-anim-1 { 0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%); } 15% { clip-path: polygon(0 20%, 100% 20%, 100% 22%, 0 22%); } 30% { clip-path: polygon(0 50%, 100% 50%, 100% 51%, 0 51%); } 45% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); } 60% { clip-path: polygon(0 10%, 100% 10%, 100% 15%, 0 15%); } 75% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); } }
-        @keyframes glitch-anim-2 { 0%, 100% { clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%); } 15% { clip-path: polygon(0 80%, 100% 80%, 100% 85%, 0 85%); } 30% { clip-path: polygon(0 40%, 100% 40%, 100% 42%, 0 42%); } 45% { clip-path: polygon(0 10%, 100% 10%, 100% 12%, 0 12%); } 60% { clip-path: polygon(0 90%, 100% 90%, 100% 95%, 0 95%); } 75% { clip-path: polygon(0 30%, 100% 30%, 100% 35%, 0 35%); } }
     </style>
 </head>
 <body>
     <div class="login-container">
         <div class="branding-panel">
+
             <div class="glitch-container">
-                <div class="glitch-text" data-text="SISTEMA EDUCACIONAL MODERNO">
-                    <h1>SISTEMA</h1>
-                    <h1 class="highlight">EDUCACIONAL</h1>
-                    <h1>MODERNO</h1>
+                <div class="glitch-text" data-text="MINHA FICHA">
+                    <h1>MINHA</h1>
+                    <h1 class="highlight">FICHA</h1>
                 </div>
             </div>
+
             <div class="line"></div>
             <p>Do quadro de horários ao controle de notas - tudo na palma da sua mão.</p>
+
+            <ul class="feature-list">
+                <li>Notas em tempo real</li>
+                <li>Horários atualizados</li>
+                <li>Comunicação direta</li>
+                <li>Interface moderna</li>
+            </ul>
+
         </div>
 
         <div class="form-panel">
