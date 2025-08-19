@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Horária</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-fundo: #FFF6F9; --cor-card: #FFFFFF; --cor-texto-principal: #1F2937; --cor-texto-secundario: #6B7280;
+            --cor-rosa-vibrante: #FF007A; --cor-borda: #E5E7EB;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--cor-fundo); display: flex; justify-content: center; min-height: 100vh; color: var(--cor-texto-principal); position: relative; padding: 2rem; }
+        .nav-button { position: absolute; display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background-color: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: 12px; color: var(--cor-texto-secundario); font-weight: 600; text-decoration: none; transition: all 0.2s ease-in-out; }
+        .back-button { top: 2rem; left: 2rem; }
+        .logout-button { top: 2rem; right: 2rem; }
+        .nav-button:hover { border-color: var(--cor-rosa-vibrante); color: var(--cor-rosa-vibrante); }
+        
+        .schedule-container { width: 100%; max-width: 1100px; background-color: var(--cor-card); border-radius: 24px; box-shadow: 0 20px 60px -15px rgba(255, 0, 122, 0.15); padding: 32px; }
+        .schedule-header { text-align: center; margin-bottom: 24px; }
+        .schedule-header h1 { font-size: 28px; font-weight: 700; }
+        .schedule-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        .schedule-table th, .schedule-table td { border: 1px solid var(--cor-borda); padding: 12px; text-align: center; }
+        .schedule-table th { font-weight: 600; background-color: #F9FAFB; }
+        .time-column { width: 100px; font-weight: 500; color: var(--cor-texto-secundario); }
+        .class-cell { vertical-align: top; }
+        .class-entry { background-color: var(--cor-fundo); border-left: 4px solid var(--cor-rosa-vibrante); border-radius: 8px; padding: 8px; text-align: left; font-size: 14px; margin: 4px; }
+        .class-subject { font-weight: 700; color: var(--cor-rosa-vibrante); }
+        .class-code, .class-teacher { font-size: 12px; color: var(--cor-texto-secundario); }
+    </style>
+</head>
+<body>
+    <a href="menu_aluno.html" class="nav-button back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        <span>Voltar ao Menu</span>
+    </a>
+    <a href="index.html" class="nav-button logout-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <span>Deslogar</span>
+    </a>
+
+    <div class="schedule-container">
+        <div class="schedule-header">
+            <h1>Grade Horária Semanal</h1>
+        </div>
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th class="time-column">Horário</th>
+                    <th>Segunda-feira</th>
+                    <th>Terça-feira</th>
+                    <th>Quarta-feira</th>
+                    <th>Quinta-feira</th>
+                    <th>Sexta-feira</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-column">08:00 - 10:00</td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Cálculo I</div>
+                            <div class="class-code">MAT140</div>
+                            <div class="class-teacher">Prof. Dr. Silva</div>
+                        </div>
+                    </td>
+                    <td class="class-cell"></td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Cálculo I</div>
+                            <div class="class-code">MAT140</div>
+                            <div class="class-teacher">Prof. Dr. Silva</div>
+                        </div>
+                    </td>
+                    <td class="class-cell"></td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Algoritmos I</div>
+                            <div class="class-code">COM110</div>
+                            <div class="class-teacher">Prof. Dr. Souza</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="time-column">10:00 - 12:00</td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Física II</div>
+                            <div class="class-code">FIS121</div>
+                            <div class="class-teacher">Prof. Dra. Costa</div>
+                        </div>
+                    </td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Algoritmos I</div>
+                            <div class="class-code">COM110</div>
+                            <div class="class-teacher">Prof. Dr. Souza</div>
+                        </div>
+                    </td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Física II</div>
+                            <div class="class-code">FIS121</div>
+                            <div class="class-teacher">Prof. Dra. Costa</div>
+                        </div>
+                    </td>
+                    <td class="class-cell"></td>
+                    <td class="class-cell"></td>
+                </tr>
+                <tr>
+                    <td class="time-column">14:00 - 16:00</td>
+                    <td class="class-cell"></td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Química Geral</div>
+                            <div class="class-code">QUI100</div>
+                            <div class="class-teacher">Prof. Me. Pereira</div>
+                        </div>
+                    </td>
+                    <td class="class-cell"></td>
+                    <td class="class-cell">
+                        <div class="class-entry">
+                            <div class="class-subject">Química Geral</div>
+                            <div class="class-code">QUI100</div>
+                            <div class="class-teacher">Prof. Me. Pereira</div>
+                        </div>
+                    </td>
+                    <td class="class-cell"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Disciplinas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-fundo: #FFF6F9; --cor-card: #FFFFFF; --cor-texto-principal: #1F2937; --cor-texto-secundario: #6B7280;
+            --cor-rosa-vibrante: #FF007A; --cor-borda: #E5E7EB; --cor-gradiente-inicio: #FF007A; --cor-gradiente-fim: #FF80B8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--cor-fundo); display: flex; justify-content: center; min-height: 100vh; color: var(--cor-texto-principal); position: relative; padding: 2rem; }
+        .nav-button { position: absolute; display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background-color: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: 12px; color: var(--cor-texto-secundario); font-weight: 600; text-decoration: none; transition: all 0.2s ease-in-out; }
+        .back-button { top: 2rem; left: 2rem; }
+        .logout-button { top: 2rem; right: 2rem; }
+        .nav-button:hover { border-color: var(--cor-rosa-vibrante); color: var(--cor-rosa-vibrante); }
+        .page-container { width: 100%; max-width: 900px; background-color: var(--cor-card); border-radius: 24px; box-shadow: 0 20px 60px -15px rgba(255, 0, 122, 0.15); padding: 32px; }
+        .page-header { text-align: center; border-bottom: 1px solid var(--cor-borda); padding-bottom: 16px; margin-bottom: 24px; }
+        .page-header h1 { font-size: 28px; font-weight: 700; }
+        .disciplinas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; min-height: 200px; }
+        .disciplina-button { display: flex; flex-direction: column; justify-content: space-between; padding: 20px; border: 1px solid var(--cor-borda); border-radius: 16px; text-decoration: none; color: var(--cor-texto-principal); transition: all 0.2s ease-in-out; }
+        .disciplina-button:hover { transform: translateY(-4px); border-color: var(--cor-rosa-vibrante); box-shadow: 0 8px 20px -5px rgba(255, 0, 122, 0.2); }
+        .disciplina-nome { font-size: 18px; font-weight: 700; }
+        .disciplina-codigo { font-size: 14px; color: var(--cor-texto-secundario); }
+        .add-disciplina-container { margin-top: 24px; border-top: 1px solid var(--cor-borda); padding-top: 24px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+        .add-disciplina-container p { font-size: 16px; font-weight: 500; color: var(--cor-texto-secundario); }
+        .add-button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: linear-gradient(135deg, var(--cor-gradiente-inicio), var(--cor-gradiente-fim)); color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 15px -5px rgba(255, 0, 122, 0.6); transition: all 0.2s ease-in-out; }
+        .add-button:hover { transform: scale(1.1); box-shadow: 0 6px 20px -5px rgba(255, 0, 122, 0.7); }
+    </style>
+</head>
+<body>
+    <a href="menu_aluno.html" class="nav-button back-button"><span>Voltar ao Menu</span></a>
+    <a href="index.html" class="nav-button logout-button"><span>Deslogar</span></a>
+    <div class="page-container">
+        <header class="page-header"><h1>Minhas Disciplinas</h1></header>
+        <main>
+            <div class="disciplinas-grid">
+                
+                <a href="detalhe_disciplina.html" class="disciplina-button">
+                    <div>
+                        <div class="disciplina-nome">Banco de Dados</div>
+                        <div class="disciplina-codigo">BD201</div>
+                    </div>
+                </a>
+                
+                <a href="detalhe_disciplina.html" class="disciplina-button">
+                    <div>
+                        <div class="disciplina-nome">Programação 2</div>
+                        <div class="disciplina-codigo">PROG2</div>
+                    </div>
+                </a>
+
+                <a href="detalhe_disciplina.html" class="disciplina-button">
+                    <div>
+                        <div class="disciplina-nome">Matemática Discreta</div>
+                        <div class="disciplina-codigo">MATD1</div>
+                    </div>
+                </a>
+
+            </div>
+            
+            <div class="add-disciplina-container">
+                <p>Cadastrar nova disciplina</p>
+                <a href="cadastro_disciplina.html" class="add-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
