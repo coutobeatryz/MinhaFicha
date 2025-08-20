@@ -20,7 +20,7 @@ Abaixo estão algumas imagens demonstrando o visual das principais telas da plat
 
 ### 🎓 Menu do Aluno
 
-<img src="https://github.com/seu-usuario/seu-repo/assets/caminho-para-imagem-aluno" alt="Menu do Aluno" width="700"/>
+<img width="1335" height="608" alt="image" src="https://github.com/user-attachments/assets/c8beda77-943e-469a-93c8-7ca2b618c0dc" />
 
 ### 👨‍🏫 Menu do Professor
 
