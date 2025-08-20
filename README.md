@@ -10,6 +10,26 @@ O objetivo do **MinhaFicha** é desenvolver um banco de dados relacional robusto
 * Iaggo Rauta Ramos de Lima
 * Gabriel Fonseca Amaro
 
+## 🎨 Interface do Sistema
+
+Abaixo estão algumas imagens demonstrando o visual das principais telas da plataforma **MinhaFicha**:
+
+### 🏠 Tela Inicial (Menu Principal)
+
+<img width="1893" height="932" alt="image" src="https://github.com/user-attachments/assets/2f25aa10-5033-4b53-843e-6279e57ad7a7" />
+
+### 🎓 Menu do Aluno
+
+<img src="https://github.com/seu-usuario/seu-repo/assets/caminho-para-imagem-aluno" alt="Menu do Aluno" width="700"/>
+
+### 👨‍🏫 Menu do Professor
+
+<img src="https://github.com/seu-usuario/seu-repo/assets/caminho-para-imagem-professor" alt="Menu do Professor" width="700"/>
+
+### 📝 Observações
+
+As imagens acima representam a interface inicial da plataforma, que pode ser expandida futuramente com mais funcionalidades visuais e interativas.
+
 ## 📊 Diagrama Entidade-Relacionamento (E-R)
 
 O modelo conceitual abaixo representa a estrutura do banco de dados, mostrando as entidades e como elas se relacionam.
