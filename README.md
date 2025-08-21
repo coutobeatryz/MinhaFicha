@@ -23,8 +23,8 @@ Abaixo estão algumas imagens demonstrando o visual das principais telas da plat
 <img width="1335" height="608" alt="image" src="https://github.com/user-attachments/assets/c8beda77-943e-469a-93c8-7ca2b618c0dc" />
 
 ### 👨‍🏫 Menu do Professor
+<img width="1328" height="609" alt="image" src="https://github.com/user-attachments/assets/a46c5a9a-5d2d-4efa-9acd-490027f683bc" />
 
-<img src="https://github.com/seu-usuario/seu-repo/assets/caminho-para-imagem-professor" alt="Menu do Professor" width="700"/>
 
 ### 📝 Observações
 
