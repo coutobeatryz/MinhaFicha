@@ -10,6 +10,13 @@ O objetivo do **MinhaFicha** é desenvolver um banco de dados relacional robusto
 * Iaggo Rauta Ramos de Lima
 * Gabriel Fonseca Amaro
 
+## 📊 Diagrama Entidade-Relacionamento (E-R)
+
+O modelo conceitual abaixo representa a estrutura do banco de dados, mostrando as entidades e como elas se relacionam.
+
+<img width="923" height="473" alt="image" src="https://github.com/user-attachments/assets/bc979364-206e-4859-a6d0-2fa7b73fb643" />
+
+
 ## 🎨 Interface do Sistema
 
 Abaixo estão algumas imagens demonstrando o visual das principais telas da plataforma **MinhaFicha**:
@@ -29,13 +36,6 @@ Abaixo estão algumas imagens demonstrando o visual das principais telas da plat
 ### 📝 Observações
 
 As imagens acima representam a interface inicial da plataforma, que pode ser expandida futuramente com mais funcionalidades visuais e interativas.
-
-## 📊 Diagrama Entidade-Relacionamento (E-R)
-
-O modelo conceitual abaixo representa a estrutura do banco de dados, mostrando as entidades e como elas se relacionam.
-
-<img width="923" height="473" alt="image" src="https://github.com/user-attachments/assets/bc979364-206e-4859-a6d0-2fa7b73fb643" />
-
 
 ## 🏗️ Estrutura do Banco de Dados
 
