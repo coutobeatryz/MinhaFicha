@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Aluno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'campus-pink': '#FF007A',
+                        'campus-pink-light': '#FF80B8',
+                        'campus-pink-soft': '#FFF6F9',
+                        'campus-text': '#1F2937',
+                        'campus-text-secondary': '#6B7280',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(255, 0, 122, 0.4)' },
+                            '50%': { boxShadow: '0 0 30px rgba(255, 0, 122, 0.6)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200px 0' },
+                            '100%': { backgroundPosition: 'calc(200px + 100%) 0' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFF6F9, #FFFFFF);
+        }
+        
+        .gradient-primary {
+            background: linear-gradient(135deg, #FF007A, #FF80B8);
+        }
+        
+        .gradient-card {
+            background: linear-gradient(145deg, #FFFFFF, #FFF6F9);
+        }
+        
+        .shadow-elevated {
+            box-shadow: 0 20px 25px -5px rgba(255, 0, 122, 0.25), 0 10px 10px -5px rgba(255, 0, 122, 0.1);
+        }
+        
+        .shadow-card {
+            box-shadow: 0 4px 6px -1px rgba(255, 0, 122, 0.1), 0 2px 4px -1px rgba(255, 0, 122, 0.06);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #FF007A, #FF80B8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 30px -5px rgba(255, 0, 122, 0.3);
+        }
+        
+        .shimmer-effect {
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 122, 0.1), transparent);
+            background-size: 200px 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        .glow-bg {
+            background: radial-gradient(circle at center, rgba(255, 0, 122, 0.3), transparent 70%);
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 122, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 122, 0.6); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .online-indicator {
+            width: 12px;
+            height: 12px;
+            background: #10B981;
+            border: 2px solid white;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+        }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden relative">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -left-1/4 -top-1/4 h-96 w-96 rounded-full bg-campus-pink opacity-5 blur-3xl animate-float"></div>
+        <div class="absolute -right-1/4 -bottom-1/4 h-96 w-96 rounded-full bg-campus-pink opacity-5 blur-3xl animate-float" style="animation-delay: 3s;"></div>
+        <div class="absolute left-1/2 top-1/2 h-64 w-64 rounded-full bg-campus-pink opacity-3 blur-2xl animate-float" style="animation-delay: 1.5s;"></div>
+    </div>
+
+    <a href="/" class="fixed right-6 top-6 z-50 flex items-center gap-2 rounded-xl bg-white px-4 py-2.5 shadow-card transition-all duration-300 hover:bg-campus-pink-soft hover:shadow-elevated group">
+        <svg class="h-5 w-5 text-campus-text-secondary transition-colors duration-300 group-hover:text-campus-pink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>
+        </svg>
+        <span class="font-medium text-campus-text-secondary transition-colors duration-300 group-hover:text-campus-pink">Deslogar</span>
+    </a>
+
+    <div class="relative z-10 px-6 py-8 max-w-7xl mx-auto">
+        <div class="mb-8 rounded-2xl gradient-card p-6 shadow-card">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <div class="flex h-16 w-16 items-center justify-center rounded-full gradient-primary text-white shadow-elevated">
+                            <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+                            </svg>
+                        </div>
+                        <div class="online-indicator"></div>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-campus-text">{{ aluno.nome }}</h2>
+                        <p class="text-sm text-campus-text-secondary">{{ aluno.curso }}</p>
+                        <p class="text-xs text-campus-text-secondary">Matrícula: {{ aluno.matricula }}</p>
+                    </div>
+                </div>
+                
+                <div class="text-right">
+                    <div class="flex items-center gap-2 text-sm text-campus-text-secondary mb-1">
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        <span id="current-time">--:--</span>
+                    </div>
+                    <p class="text-xs text-campus-text-secondary capitalize" id="current-date">--</p>
+                </div>
+            </div>
+        </div>
+
+        <header class="mb-8 text-center">
+            <div class="relative">
+                <h1 class="mb-4 text-gradient text-6xl font-bold animate-float">
+                    Painel do Aluno
+                </h1>
+                <div class="absolute -inset-4 glow-bg opacity-30 blur-3xl -z-10 animate-pulse-glow"></div>
+            </div>
+            <p class="text-xl text-campus-text-secondary max-w-2xl mx-auto">
+                Bem-vindo ao seu espaço acadêmico! Gerencie suas atividades, horários e disciplinas de forma simples e eficiente.
+            </p>
+        </header>
+
+        <div class="mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="group relative overflow-hidden rounded-xl bg-white p-4 shadow-card transition-all duration-300 hover:shadow-elevated">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-campus-text-secondary">Média Geral</p>
+                        <p class="text-2xl font-bold text-campus-text">8.7</p>
+                        <p class="text-xs flex items-center gap-1 text-green-600">
+                            <span>↗</span>+0.3
+                        </p>
+                    </div>
+                    <div class="rounded-lg p-2 gradient-primary text-white transition-transform duration-300 group-hover:scale-110">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="absolute -inset-0.5 gradient-primary opacity-0 blur transition-opacity duration-300 group-hover:opacity-20 -z-10"></div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-xl bg-white p-4 shadow-card transition-all duration-300 hover:shadow-elevated">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-campus-text-secondary">Frequência</p>
+                        <p class="text-2xl font-bold text-campus-text">94%</p>
+                        <p class="text-xs flex items-center gap-1 text-green-600">
+                            <span>↗</span>+2%
+                        </p>
+                    </div>
+                    <div class="rounded-lg p-2 bg-gray-100 text-campus-text transition-transform duration-300 group-hover:scale-110">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="absolute -inset-0.5 gradient-primary opacity-0 blur transition-opacity duration-300 group-hover:opacity-20 -z-10"></div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-xl bg-white p-4 shadow-card transition-all duration-300 hover:shadow-elevated">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-campus-text-secondary">Horas Estudadas</p>
+                        <p class="text-2xl font-bold text-campus-text">32h</p>
+                        <p class="text-xs flex items-center gap-1 text-green-600">
+                            <span>↗</span>+5h
+                        </p>
+                    </div>
+                    <div class="rounded-lg p-2 bg-campus-pink-soft text-campus-pink transition-transform duration-300 group-hover:scale-110">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="absolute -inset-0.5 gradient-primary opacity-0 blur transition-opacity duration-300 group-hover:opacity-20 -z-10"></div>
+            </div>
+
+            </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center">
+            <a href="/aluno_atividades" class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-card transition-all duration-500 hover:shadow-elevated flex h-64 w-full max-w-sm flex-col justify-between border border-gray-100 hover:border-campus-pink/30">
+                <div class="absolute right-0 top-0 h-32 w-32 opacity-5">
+                    <svg class="h-full w-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </div>
+                <div class="relative z-10">
+                    <div class="mb-4 flex items-start justify-between">
+                        <div class="rounded-xl gradient-primary p-3 text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <span class="rounded-full bg-yellow-500 px-2 py-1 text-xs font-medium text-white">3 pendentes</span>
+                    </div>
+                    <h3 class="mb-2 text-xl font-bold text-campus-text transition-colors duration-300 group-hover:text-campus-pink">Atividades</h3>
+                    <p class="text-sm text-campus-text-secondary leading-relaxed">Gerencie seus trabalhos, projetos e tarefas pendentes com facilidade</p>
+                </div>
+                <div class="relative z-10 mt-4 rounded-lg bg-gray-50 p-3">
+                    <p class="text-xs text-campus-text-secondary">Concluídas este mês</p>
+                    <p class="text-lg font-semibold text-campus-text">12</p>
+                </div>
+                <div class="absolute -inset-1 gradient-primary opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-20 -z-10"></div>
+                <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full shimmer-effect"></div>
+            </a>
+
+            <a href="/grade_aluno" class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-card transition-all duration-500 hover:shadow-elevated flex h-64 w-full max-w-sm flex-col justify-between border border-gray-100 hover:border-campus-pink/30">
+                <div class="absolute right-0 top-0 h-32 w-32 opacity-5">
+                    <svg class="h-full w-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div class="relative z-10">
+                    <div class="mb-4 flex items-start justify-between">
+                        <div class="rounded-xl gradient-primary p-3 text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </div>
+                        <span class="rounded-full gradient-primary px-2 py-1 text-xs font-medium text-white">Próxima: 14h</span>
+                    </div>
+                    <h3 class="mb-2 text-xl font-bold text-campus-text transition-colors duration-300 group-hover:text-campus-pink">Grade Horária</h3>
+                    <p class="text-sm text-campus-text-secondary leading-relaxed">Visualize sua agenda de aulas, horários e compromissos acadêmicos</p>
+                </div>
+                <div class="relative z-10 mt-4 rounded-lg bg-gray-50 p-3">
+                    <p class="text-xs text-campus-text-secondary">Aulas esta semana</p>
+                    <p class="text-lg font-semibold text-campus-text">18</p>
+                </div>
+                <div class="absolute -inset-1 gradient-primary opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-20 -z-10"></div>
+                <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full shimmer-effect"></div>
+            </a>
+
+            <a href="/disciplinas_aluno" class="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-card transition-all duration-500 hover:shadow-elevated flex h-64 w-full max-w-sm flex-col justify-between border border-gray-100 hover:border-campus-pink/30">
+                <div class="absolute right-0 top-0 h-32 w-32 opacity-5">
+                    <svg class="h-full w-full" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v15H6.5A2.5 2.5 0 0 1 4 14.5v-10A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <div class="relative z-10">
+                    <div class="mb-4 flex items-start justify-between">
+                        <div class="rounded-xl gradient-primary p-3 text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v15H6.5A2.5 2.5 0 0 1 4 14.5v-10A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                        </div>
+                        <span class="rounded-full bg-green-500 px-2 py-1 text-xs font-medium text-white">6 ativas</span>
+                    </div>
+                    <h3 class="mb-2 text-xl font-bold text-campus-text transition-colors duration-300 group-hover:text-campus-pink">Disciplinas</h3>
+                    <p class="text-sm text-campus-text-secondary leading-relaxed">Acesse materiais, notas e informações de todas as suas matérias</p>
+                </div>
+                <div class="relative z-10 mt-4 rounded-lg bg-gray-50 p-3">
+                    <p class="text-xs text-campus-text-secondary">Média geral</p>
+                    <p class="text-lg font-semibold text-campus-text">8.7</p>
+                </div>
+                <div class="absolute -inset-1 gradient-primary opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-20 -z-10"></div>
+                <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full shimmer-effect"></div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+
+            const timeString = now.toLocaleTimeString('pt-BR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            document.getElementById('current-time').textContent = timeString;
+            
+            const dateString = now.toLocaleDateString('pt-BR', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            document.getElementById('current-date').textContent = dateString;
+        }
+        
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        document.querySelectorAll('a, button').forEach(element => {
+            element.addEventListener('mousedown', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            element.addEventListener('mouseup', function() {
+                this.style.transform = '';
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>

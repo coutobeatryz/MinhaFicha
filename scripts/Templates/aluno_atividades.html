@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Atividades</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cor-fundo: #FFF6F9; --cor-card: #FFFFFF; --cor-texto-principal: #1F2937; --cor-texto-secundario: #6B7280;
+            --cor-rosa-vibrante: #FF007A; --cor-borda: #E5E7EB; --cor-gradiente-inicio: #FF007A; --cor-gradiente-fim: #FF80B8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--cor-fundo); display: flex; align-items: center; justify-content: center; min-height: 100vh; color: var(--cor-texto-principal); position: relative; padding: 2rem; }
+        .back-button, .logout-button { position: absolute; top: 2rem; display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem; background-color: var(--cor-card); border: 1px solid var(--cor-borda); border-radius: 12px; color: var(--cor-texto-secundario); font-weight: 600; text-decoration: none; transition: all 0.2s ease-in-out; }
+        .back-button { left: 2rem; }
+        .logout-button { right: 2rem; }
+        .back-button:hover, .logout-button:hover { border-color: var(--cor-rosa-vibrante); color: var(--cor-rosa-vibrante); }
+        .page-container { width: 100%; max-width: 800px; background-color: var(--cor-card); border-radius: 24px; box-shadow: 0 20px 60px -15px rgba(255, 0, 122, 0.15); padding: 32px; }
+        .page-header { border-bottom: 1px solid var(--cor-borda); padding-bottom: 16px; margin-bottom: 24px; }
+        .page-header h1 { font-size: 24px; font-weight: 700; }
+        .page-header p { font-size: 16px; color: var(--cor-texto-secundario); }
+        .activities-list { min-height: 300px; display: flex; flex-direction: column; gap: 16px; }
+        .placeholder { min-height: 300px; border: 2px dashed var(--cor-borda); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--cor-texto-secundario); font-style: italic; }
+        .activity-item { display: flex; align-items: flex-start; gap: 16px; padding: 16px; border: 1px solid var(--cor-borda); border-radius: 12px; }
+        .activity-content { flex-grow: 1; }
+        .activity-content h3 { font-size: 18px; font-weight: 600; }
+        .activity-content h3 .tag { font-size: 10px; font-weight: 600; color: white; padding: 2px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+        .tag.academica { background-color: var(--cor-rosa-vibrante); }
+        .tag.pessoal { background-color: #3B82F6; } /* Azul para tarefas pessoais */
+        .activity-content p { font-size: 14px; color: var(--cor-texto-secundario); margin: 4px 0; }
+        .activity-details { display: flex; gap: 16px; font-size: 12px; color: #9CA3AF; margin-top: 8px; }
+        .add-activity-container { margin-top: 24px; border-top: 1px solid var(--cor-borda); padding-top: 24px; display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+        .add-activity-container p { font-size: 16px; font-weight: 500; color: var(--cor-texto-secundario); }
+        .add-button { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: linear-gradient(135deg, var(--cor-gradiente-inicio), var(--cor-gradiente-fim)); color: white; border-radius: 50%; text-decoration: none; box-shadow: 0 4px 15px -5px rgba(255, 0, 122, 0.6); transition: all 0.2s ease-in-out; }
+        .add-button:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+    <a href="{{ url_for('menu_aluno') }}" class="back-button"><span>Voltar ao Menu</span></a>
+    <a href="{{ url_for('index') }}" class="logout-button"><span>Deslogar</span></a>
+    <div class="page-container">
+        <header class="page-header">
+            <h1>Minhas Atividades</h1>
+            <p>Tarefas acadêmicas e pessoais, ordenadas por data de entrega.</p>
+        </header>
+        <main>
+            <div id="activities-list-container" class="activities-list">
+                {% if atividades %}
+                    {% for atv in atividades %}
+                    <div class="activity-item">
+                        <div class="activity-content">
+                            <h3>
+                                {{ atv.titulo }}
+                                {% if atv.tipo == 'ACADEMICA' %}
+                                    <span class="tag academica">{{ atv.disciplina }}</span>
+                                {% else %}
+                                    <span class="tag pessoal">Pessoal</span>
+                                {% endif %}
+                            </h3>
+                            <p>{{ atv.descricao }}</p>
+                            <div class="activity-details">
+                                <span><strong>Entrega:</strong> {{ atv.data_entrega }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="placeholder">
+                        <p>Nenhuma atividade encontrada. Que tal criar uma?</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="add-activity-container">
+                <p>Adicionar nova atividade</p>
+                <a href="{{ url_for('cadastro_atividade') }}" class="add-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
