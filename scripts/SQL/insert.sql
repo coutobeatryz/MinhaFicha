@@ -6,9 +6,9 @@ INSERT INTO academico.pessoas (cpf, email, nome) VALUES
 ('444.444.444-44', 'beatryz.car@ufop.edu.br', 'Beatryz Couto'),
 ('555.555.555-55', 'lucas.oliveira@email.com', 'Lucas Oliveira'),
 
-('666.666.666-66', 'prof.jose@email.com', 'Prof. José Almeida'),
-('777.777.777-77', 'prof.clara@email.com', 'Profa. Clara Mendes'),
-('888.888.888-88', 'prof.paulo@email.com', 'Prof. Paulo Andrade');
+('666.666.666-66', 'marcos.emiliano@email.com', 'Marcos Emiliano'),
+('777.777.777-77', 'prof.clara@email.com', 'Clara Mendes'),
+('888.888.888-88', 'prof.paulo@email.com', 'Paulo Andrade');
 
 -- Alunos (pessoa_id de 1 a 5)
 INSERT INTO academico.alunos (aluno_id, matricula, curso) VALUES
@@ -20,9 +20,9 @@ INSERT INTO academico.alunos (aluno_id, matricula, curso) VALUES
 
 -- Professores (pessoa_id de 6 a 8)
 INSERT INTO academico.professores (professor_id, numero_registro, departamento) VALUES
-(6, 'P001', 'Departamento de Exatas'),
-(7, 'P002', 'Departamento de Humanas'),
-(8, 'P003', 'Departamento de Direito');
+(6, '001', 'Departamento de Exatas'),
+(7, '002', 'Departamento de Humanas'),
+(8, '003', 'Departamento de Direito');
 
 -- Grades Horárias (1 grade por aluno)
 INSERT INTO academico.grades_horarias (aluno_id, horarios) VALUES
@@ -84,3 +84,4 @@ INSERT INTO academico.alunos_atividades (aluno_id, atividade_id) VALUES
 (2, 2),
 (3, 4),
 (5, 3);
+
